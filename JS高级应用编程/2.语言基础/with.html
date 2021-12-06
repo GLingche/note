@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+     
+    // 使用 with 语句的主要场景是针对一个对象反复操作，这时候将代码作用域设置为该对象能提供便
+    // 利，如下面的例子所示：
+    let qs = location.search.substring(1);
+    let hostName = location.hostname;
+    let url = location.href;
+    // 上面代码中的每一行都用到了 location 对象。如果使用 with 语句，就可以少写一些代码：
+    with(location) {
+    let qs = search.substring(1);
+    let hostName = hostname;
+    let url = href;
+    }
+    // 由于 with 语句影响性能且难于调试其中的代码，通常不推荐在产品代码中使用 with
+    // 语句
+</script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+1.ECMAscirpt中一切都区分大小写：例如test Tset 是两个不同的变量
+2.标识符：所谓标识符，就是变量，函数，属性或函数参数的名称。
+    a:第一个字符必须是一个字母，下划线‘_’或美元符号$
+    b:剩下的其他字符可以是字母、下划线、美元符号或数字。
+3.严格模式：
+    a:严格模式是一种不同的JavaScript解析和执行模型，对于不安全的活动
+      将抛出错误。要对整个脚本启用严格模式，在脚本开头加上这一行
+      "use strict";
+      或者
+      function doSomething(){
+          "use strict";
+      }
+4.变量
+   1.var声明作用域
+        function test(){
+            var message = "";//局部变量,退出该函数的时候被销毁
+        }
+
+
+   2.let声明
+     let 声明的范围是块作用域，而var声明的范围是函数作用域
+     if（true）{
+         var name = 'matt';
+         console.log(name)://matt
+     }   
+     console.log(name);//matt
+
+      if(true){
+          let age = 26;
+          console.log(age)//26
+      }  
+      console.log(age)//ReferenceError:age没有定义
+      let 较于var 而言，语法规范更为严苛，var的作用域范围也同样
+      适用于let，并且let不允许出现冗余声明。
+      1.暂时性死区
+      let 与var不同。let声明的变量不会在作用域中被提升
+      console.log(name)//undefined
+      var name = 'matt';
+
+      console.log(age)//ReferenceError
+      let age = 26;
+      2.全局声明
+      与var不同，使用let在全局作用域中声明的变量不会成为window对象
+        var name = 'matt'
+        console.log(window.name);//matt
+
+        let age = 26;
+        console.log(window.age)//undefined
+      3.条件声明
+      <script>
+       var name = 11;
+       let age  =26
+       </script>
+
+       <script>
+       //假设脚本不确定页面中是否已经声明了同名变量
+       //那他可以假设还没声明过
+
+       var name = 111;
+       //这里没问题，因为可以被作为一个提升声明来处理
+       //不需要检查之前是否声明过同名变量
+
+       let age =36;
+       //如果age之前声明过，这里会报错
+       </script>
+
+       4.for循环中的let声明
+       for(var i =0;i<5;i++){
+       }
+       console.log(i)//5
+
+       for(let i=0;i<5;i++){
+       }
+       console.log(i)//undefined
+
+       #在使用var的时候，最常见的问题就是对迭代变量的奇特声明和修改
+       for(var i=0;i<5;i++){
+           setTimeout(()=>console.log(i),0);
+       }
+       //你可能以为输出0~5
+       //实际输出55555;
+       //当将var改为let时，js引擎在后台会为每个迭代循环声明一个新的迭代变量，因此会输出
+       我们期待的值。
+
+
+       3.const声明
+       行为与let基本相同，唯一区别是在声明变量时必须同时初始化变量，切不允许修改这个
+       变量值，相当于给了个final属性。
+       
+         
+    ###String
+    1.toString 
+    let num = 10;
+    console.log(num.toString());//"10"
+    console.log(num.toString(2))//"1010"
+    console.log(num.toString(8))//"12"
+    console.log(num.toString(10))//"10"
+    console.log(num.toString(16))//"a"
+
+    2.跨行定义字符串
+    let myMultiLineString = 'first line\nsecond line'; 
+    let myMultiLineTemplateLiteral = `first line 
+    second line`; 
+    console.log(myMultiLineString); 
+    // first line 
+    // second line" 
+    console.log(myMultiLineTemplateLiteral); 
+    // first line
+    // second line 
+    console.log(myMultiLineString === myMultiLinetemplateLiteral); // true
+    顾名思义，模板字面量在定义模板时特别有用，比如下面这个 HTML 模板：
+    let pageHTML = ` 
+    <div> 
+    <a href="#"> 
+    <span>Jake</span> 
+    </a> 
+    </div>`;
+
+    3.字符串插值
+    let value = 5; 
+let exponent = 'second'; 
+// 以前，字符串插值是这样实现的：
+let interpolatedString = 
+ value + ' to the ' + exponent + ' power is ' + (value * value); 
+// 现在，可以用模板字面量这样实现：
+let interpolatedTemplateLiteral = 
+ `${ value } to the ${ exponent } power is ${ value * value }`;
+
+
+
+ 

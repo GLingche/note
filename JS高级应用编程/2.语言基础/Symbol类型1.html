@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 符号没有字面量语法，这也是它们发挥作用的关键。按照规范，你只要创建 Symbol()实例并将其 -->
+    <!-- 用作对象的新属性，就可以保证它不会覆盖已有的对象属性，无论是符号属性还是字符串属性。 -->
+</head>
+
+<body>
+    <script>
+        let genericSymbol = Symbol();
+        console.log(genericSymbol); // Symbol() 
+        let fooSymbol = Symbol('foo');
+        console.log(fooSymbol); // Symbol(foo);
+
+        // 创建全局符号
+        let s = Symbol.for('foo');
+        console.log(Symbol.keyFor(s)); // foo 
+        // 创建普通符号
+        let s2 = Symbol('bar');
+        console.log(Symbol.keyFor(s2)); // undefined 
+        // 如果传给 Symbol.keyFor()的不是符号，则该方法抛出 TypeError：
+        Symbol.keyFor(123); // TypeError: 123 is not a symbol
+
+        // 1.Symbol.asyncIterator函数
+
+        class Emitter {
+            constructor(max) {
+                this.max = max;
+                this.asyncIdx = 0;
+            }
+            async*[Symbol.asyncIterator]() {
+                while (this.asyncIdx < this.max) {
+                    yield new Promise((resolve) => resolve(this.asyncIdx++));
+                }
+            }
+        }
+
+        async function asyncCount() {
+            let emitter = new Emitter(5);
+
+            for await (const x of emitter) {
+                console.log(x);
+            }
+        }
+
+        asyncCount();
+        //0 1 2 3 4 
+
+        // 2.Symbol.hasInstance
+        function Foo() { }
+        let f = new Foo();
+        console.log(Foo[Symbol.hasInstance](f)); // true 
+        class Bar { }
+        let b = new Bar();
+        console.log(Bar[Symbol.hasInstance](b)); // true
+
+        // 3.Symbol.isConcatSpreadable
+        let initial = ['foo'];
+        let array = ['bar'];
+        console.log(array[Symbol.isConcatSpreadable]); // undefined 
+        console.log(initial.concat(array)); // ['foo', 'bar'] 
+        array[Symbol.isConcatSpreadable] = false;
+        console.log(initial.concat(array)); // ['foo', Array(1)]
+
+        // 4.Symbol.iterator
+        class Foo{
+            *[Symbol.iterator](){}
+        }
+        let f = new Foo();
+
+        console.log(f[Symbol.iterator]());
+        //Generator{<suspended>}
+        
+        class Emitter{
+            constructor(max){
+                this.max = max;
+                this.idx = 0;
+            }
+            
+           *[Symbol.iterator](){
+               while(this.idx<this.max){
+                   yield this.idx++;
+               }
+           } 
+        }    
+
+        function count(){
+            let emitter = new Emitter(5);
+            
+            for(const x of emitter){
+                console.log(x);
+            }
+        }
+        count();
+        //0 1 2 3 4 
+
+        // 5.Symbol.match
+            
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 负值以补码的二进制编码存储：
+    1、确定绝对值的二进制制表示
+    2、将每个0变成1，1变成0
+    3、给结果加1 -->
+    
+</head>
+<body>
+    <script>
+        let num = -18;
+        console.log(num.toString(2));//"-100010"
+
+        // 按位非 ~（对数值取反并减一）
+        let num1 = 25;
+        let num2 = ~num1-1;//-26
+
+        //无符号位右移（对负数影响比较大）
+        let oldValue = -64 //11111111111111111100000
+        let newValue = oldValue >>>5 //等于十进制12345684
+        // 因为负数是以补码的形式存储的,但无符号位右移，却将他当成正值
+        // 计算，最后将符号位变为0。         
+         
+        // 比较字符编码
+        let result = "Brick" < "alphabet" //true
+        // 要得到确实按字母顺序的比较结果
+        let result = "Brick".toLowerCase() < "alphabet".toLowerCase();//false
+
+    </script>
+</body>
+</html>

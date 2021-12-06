@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- window.onlaod是窗口加载事件，当文档中内容完全加载完毕后才会触发该事件 -->
+</head>
+
+<body>
+    <button>点我</button>
+    <script>
+        window.onload = function () {
+            let btn = document.querySelector('button');
+            btn.addEventListener('click', function () {
+                alert('dd');
+            })
+        }
+
+        window.addEventListener('load', function () {
+            let btn = document.querySelector('button');
+        })
+
+        window.addEventListener('DOMContenetLoaded', function(){
+
+        });
+        //load 较于DOMContentLoaded而言。后者比前者快些
+    </script>
+
+</body>
+
+</html>

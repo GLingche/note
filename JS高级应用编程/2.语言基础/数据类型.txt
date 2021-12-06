@@ -1,0 +1,32 @@
+1、typeof操作符
+let message = "32423";
+console.log(typeof message);//"string"
+console.log(typeof (message));//"string" typeof 是一个操作符而不是函数但可以用参数
+console.log(typeof 88)//"number"
+2.number类型
+let octalNum1 = 070 //八进制的56
+let octalNum2 = 079 //无效的八进制，当79处理
+let octalNum3 = 08 //无效的八进制，当8处理
+
+let hexNum1 = 0xA//十六进制10
+
+let floatNum1 = 3.125e7 //等于31250000
+Number.MIN_VALUE
+Number.MAX_VALUE
+
+let result = Number.MAX_VALUE + Number.MAX_VALUE
+console.log(isFinite(result));//false 确定一个值是不是有限大
+
+3.NaN Not a Number(不能数值)
+
+console.log(0/0) //NaN
+console.log(5/0)//Infinity
+console.log(5/-0)//-Infinity
+
+console.log(NaN == NaN)//false
+
+let num1 = parseInt("AF",16)//175//按十六进制解析
+let nums2 = parseInt("AF") //NaN
+
+3.String 类型
+

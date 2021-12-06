@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 使用Symbol定义一组颜色值，封装方法对颜色值判断，返回对应的颜色名称 -->
+</head>
+<body>
+    <script>
+        //使用symbol定义几个颜色值
+        const COLOR_RED = Symbol('red');
+        const COLOR_GREEN = Symbol('green');
+        const COLOR_PINK = Symbol('pink');
+
+        //封装方法，对颜色值进行判断
+        function getColor(color){
+            switch(color){
+                case COLOR_RED:
+                    return '红色';
+                case COLOR_GREEN:
+                    return '绿色';
+                case COLOR_PINK:
+                    return '粉色';
+                default:
+                    return 'undefined'    
+            }
+        }
+
+        console.log(getColor(COLOR_GREEN));
+
+        //Symbol高级用法
+        var s = Symbol();
+        var a = {
+            name:'zhangsan',
+            [s]:'hello'//一定要加中括号
+        }
+        console.log(a[s]);
+        console.log(Object.keys(a));
+        // 案例定义一个对象,含有name,age.gender三个属性，另外使用Symbol定义密码属性，最终将对象序列化后打印出来
+
+        var obj = {
+            name:'zhangsan',
+            age:18,
+            gender:'男',
+            [Symbol('password')]:'123456'//这样定义不可以被枚举及json序列化
+        }
+
+        var str = JSON.stringify(obj); // 对象序列化
+        console.log(str);
+    </script>
+</body>
+</html>

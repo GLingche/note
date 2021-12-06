@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 局部变量在超出作用域后会被自动解除引用
+        function createPerson(name) {
+            let localPerson = new Object();
+            localPerson.name = name;
+            return localPerson;
+        }
+        let golbalPerson = createPerson("Nochlas");
+        //globalPerson是一个全局变量，应该在不再需要时手动解除globalPerson对值的引用
+        globalPerson = null;
+
+        //共享相同的隐藏类(先创建再补充)
+        function Article(opt_author) {
+            this.title = 'Inauguration Ceremony Features Kazoo Band';
+            this.author = opt_author;
+        }
+
+        let a1 = new Article();
+        let a2 = new Article('Jake');
+
+        //删除操作
+        a1.author = null;
+
+    </script>
+
+</body>
+
+</html>

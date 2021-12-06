@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let s1 = "some text";
+        let s2 = s1.substring(2);
+        // 在以读模式访问字符串
+        // 值的任何时候，后台都会执行以下 3 步：
+        // (1) 创建一个 String 类型的实例
+        // (2) 调用实例上的特定方法
+        // (3) 销毁实例
+        //如同
+        let s1 = new String("some text");
+        let s2 = s1.substring(2);
+        s1 = null;
+
+        let s1 = "some text";
+        s1.color = "red";
+        console.log(s1.color); // undefined
+        /*
+        这里的第二行代码尝试给字符串 s1 添加了一个 color 属性。可是，第三行代码访问 color 属性时，
+它却不见了。原因就是第二行代码运行时会临时创建一个 String 对象，而当第三行代码执行时，这个对
+象已经被销毁了。实际上，第三行代码在这里创建了自己的 String 对象，但这个对象没有 color 属性。
+        */
+
+        let falseObject = new Boolean(false);//对象永远为true
+        let result = falseObject && true;
+        console.log(result); // true 
+        let falseValue = false;
+        result = falseValue && true;
+        console.log(result); // false 
+
+        // 字符窜迭代与解构
+        let message = "abc";
+        let stringIterator = message[Symbol.iterator]();
+        console.log(stringIterator.next());//{value:"a",done:false}
+        console.log(stringIterator.next());//{value:"b",done:false}
+
+        for (const c of "abcee") {
+            console.log(c);
+        }
+
+        // 字符串模式匹配方法
+        let text = "cat,bat,sat,fat";
+        let pattern = /.at/;
+
+        let matches = text.match(pattern);
+        console.log(matches.index);//0
+        console.log(matches[0]);//"cat"
+        console.log(pattern.lastIndex);//0
+
+        function htmlEscape(text) {
+            return text.replace(/[<>"&]/g, function (match, pos, originalText) {
+                switch (match) {
+                    case "<":
+                        return "&lt;";
+                    case ">":
+                        return "&gt;";
+                    case "&":
+                        return "amp;";
+                    case "\"":
+                        return "&quot";
+                }
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>

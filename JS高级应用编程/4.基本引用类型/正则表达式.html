@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //每个正则表达式可以带零个或多个flags
+        let expression = "/pattern/flags";
+        /*
+        g:全局模式，表示查找字符窜的全部内容。
+        i:不区分大小写。
+        m：多行模式，表示在查找到一行文本末尾时会继续查找
+        u:Unicode模式
+        s：dotAll模式，表示元字符，匹配任何字符（包括\n \r）
+        */
+
+        //匹配字符窜中的所有"at"
+        let pattern1 = /at/g;
+
+        //匹配第一个bat或cat，忽略大小写
+        let pattern2 = /[bc]at/i;
+
+        //匹配所有以"at"结尾的三字符组合，忽略大小写
+        let pattern3 = /.at/gi;
+
+        // 元字符在正则表达式中都有一种或多种特殊功能，所以要匹配上面这些字符本身，就必须使用反斜
+        // 杠来转义。下面是几个例子：
+        // 匹配第一个"bat"或"cat"，忽略大小写
+        let pattern1 = /[bc]at/i;
+        // 匹配第一个"[bc]at"，忽略大小写
+        let pattern2 = /\[bc\]at/i;
+        // 匹配所有以"at"结尾的三字符组合，忽略大小写
+        let pattern3 = /.at/gi;
+        // 匹配所有".at"，忽略大小写
+        let pattern4 = /\.at/gi;
+
+        //实例
+        let text = "mom and dad and baby";
+        let pattern = /mom( and dad( and baby)?)?/gi;
+        let matches = pattern.exec(text);
+        console.log(matches.index); // 0 
+        console.log(matches.input); // "mom and dad and baby" 
+        console.log(matches[0]); // "mom and dad and baby" 
+        console.log(matches[1]); // " and dad and baby" 
+        console.log(matches[2]); // " and baby" 
+
+        // 如果在这个模式上设置了 g 标记，则每次调用 exec()都会在字符串中向前搜索下一个匹配项，如
+        // 下面的例子所示：
+        let text = "cat, bat, sat, fat";
+        let pattern = /.at/g;
+        let matches = pattern.exec(text);
+        console.log(matches.index); // 0 
+        console.log(matches[0]); // cat 
+        console.log(pattern.lastIndex); // 3 
+        matches = pattern.exec(text);
+        console.log(matches.index); // 5 
+        console.log(matches[0]); // bat 
+        console.log(pattern.lastIndex); // 8 
+        matches = pattern.exec(text);
+        console.log(matches.index); // 10 
+        console.log(matches[0]); // sat 
+        console.log(pattern.lastIndex); // 13 
+
+        let text = "this has been a short summer";
+        let pattern = /(.)hort/g;
+        /* 
+         * 注意：Opera 不支持简写属性名
+         * IE 不支持多行匹配
+         */
+        if (pattern.test(text)) {
+            console.log(RegExp.$_); // this has been a short summer 
+            console.log(RegExp["$`"]); // this has been a 
+            console.log(RegExp["$'"]); // summer 
+            console.log(RegExp["$&"]); // short 
+            console.log(RegExp["$+"]); // s 
+        }
+    </script>
+
+
+</body>
+
+</html>
