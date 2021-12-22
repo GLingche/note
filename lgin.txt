@@ -1,0 +1,29 @@
+
+鄂ICP备2021019643号至链接
+http://beian.miit.gov.cn/
+
+Xshell密钥名称：id_rsa_2048
+
+服务器实例：root
+密码Hwu201314..
+
+VCN：Hhwu20
+
+bt数据库id：www_lingche_net6
+password:hwu201314..
+
+wordpressid:lingche
+:hwu201314..
+
+访问站点：http://www.lingche.net.cn/index.php
+
+bt：username: ud9tq6pq
+password: b40490cd
+
+外网面板地址: http://8.142.189.121:8888/807c1b52
+内网面板地址: http://172.24.25.137:8888/807c1b52
+*以下仅为初始默认账户密码，若无法登录请执行bt命令重置账户/密码登录
+username: ud9tq6pq
+password: b40490cd
+
+
