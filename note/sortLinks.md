@@ -13,6 +13,8 @@ git转化工具：https://www.aconvert.com/cn/video/mp4-to-gif/
 
 jetbrains：https://account.jetbrains.com 
 
+小互动助手：https://mp.xiaohudong.com/login
+
 #### JS
 文档搜索：https://developer.mozilla.org/zh-CN/
 
