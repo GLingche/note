@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserMapper">
+    <select id="queryUserById" parameterType="java.lang.String" resultType="com.example.pojo.User">
+        select * from
+        (
+            select user_id, user_name, face_image, nickname, sex, user_location, last_login_date, introduction
+            from user where user_id = #{userId} limit 1
+        ) a,
+        (
+            select count(1) fans_counts from user_fan
+            where user_id = #{userId}
+        ) b,
+        (
+            select count(1) follow_counts from user_fan
+            where fan_id = #{userId}
+        ) c
+
+    </select>
+
+    <select id="selectOne" parameterType="com.example.pojo.User" resultType="com.example.pojo.User">
+        select * from user
+         <where>
+             <if test="userName != null">user_name=#{userName}</if>
+             <if test="userId != null">user_id=#{userId}</if>
+         </where>
+        limit 1;
+    </select>
+
+    <insert id="insert" parameterType="com.example.pojo.User">
+        insert into user set
+        user_id=#{userId},
+        user_name=#{userName},
+        user_pwd=#{userPwd},
+        nickname=#{nickName},
+        face_image=#{faceImage},
+        introduction="";
+    </insert>
+
+    <update id="updateUserInfo" parameterType="com.example.pojo.User">
+        update user
+        <set>
+            <if test="nickName != null">nickname=#{nickName},</if>
+            <if test="faceImage != null">face_image=#{faceImage},</if>
+            <if test="sex != null">sex=#{sex},</if>
+            <if test="userLocation != null">user_location=#{userLocation},</if>
+            <if test="introduction != null">introduction=#{introduction},</if>
+            <if test="fansCounts != null">fans_counts=#{fansCounts},</if>
+            <if test="followCounts != null">follow_counts=#{followCounts}</if>
+        </set>
+        where user_id=#{userId}
+    </update>
+
++++++++++++++++
+  insert into driver(`name`,account,sex,age,identity_id,password)
+                values(#{name},#{account},#{sex},#{age},#{identityID},#{password})
+
+
+update table
+    <trim prefix="SET" suffixOverrides=",">
+        <if test="items != null and items != ''">items = #{items},</if>
+        <if test="publishDate != null">publish_date = #{publishDate},</if>
+        <if test="name != null and name != ''">name = #{name},</if>
+        <if test="area != null and area != ''">area = #{area},</if>
+        <if test="address != null and address != ''">address = #{address},</if>
+        <if test="zipcode != null and zipcode != ''">zipcode = #{zipcode},</if>
+    </trim>
+
+
+</mapper>
+
+serliazble
